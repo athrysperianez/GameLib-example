@@ -84,8 +84,9 @@ public class Main {
 				// TODO Debug
 				System.out.println("Casilla: " + x + "-" + y);
 				Unit unidad = table[x][y].getUnitOnIt();
-				if (unidad != null)
+				if (unidad != null) {
 					System.out.println("Unidad: " + unidad.getSummary());
+				}
 			}
 		}
 		table[4][1].overrideUnitOnIt(new BasicSoldier());
