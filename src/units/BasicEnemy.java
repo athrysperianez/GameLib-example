@@ -46,9 +46,9 @@ public class BasicEnemy implements Unit {
 	@Override
 	public Pair<Integer, Integer> findUnit(Section[][] table) {
 		Pair<Integer, Integer> result = null;
-		for (int x = 0; x < table[0].length; x++) {
-			for (int y = 0; x < table[x].length; y++) {
-				if (table[x][y].getUnitOnIt().equals(this)) {
+		for (int x = 0; x < table.length; x++) {
+			for (int y = 0; y < table[x].length; y++) {
+				if (table[x][y].getUnitOnIt() != null && table[x][y].getUnitOnIt().equals(this)) {
 					result = new Pair<Integer, Integer>(x, y);
 				}
 			}

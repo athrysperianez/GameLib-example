@@ -64,16 +64,15 @@ public class Main {
 		int enemyCount = 0;
 		Random rand = new Random();
 		int enemyMax = rand.nextInt(100);
-		enemyMax = 1000;
 		enemyMax++;
 		// TODO Debug
-		System.out.println(enemyMax);
+		// System.out.println(enemyMax);
 		boolean lastWasEnemy = false;
 		ArrayList<Unit> tmpEnemy = new ArrayList<Unit>();
 		for (int x = table.length - 1; x > -1; x--) {
 			for (int y = table.length - 1; y > -1; y--) {
 				table[x][y] = new BasicSection();
-				if (!lastWasEnemy && rand.nextBoolean() && enemyCount < enemyMax) {
+				if (!lastWasEnemy && rand.nextBoolean() && enemyCount < enemyMax && (x != 1 || y != 4)) {
 					table[x][y].setUnitOnIt(new BasicEnemy());
 					tmpEnemy.add(table[x][y].getUnitOnIt());
 					enemyCount++;
@@ -81,15 +80,16 @@ public class Main {
 				} else {
 					lastWasEnemy = false;
 				}
-				// TODO Debug
-				System.out.println("Casilla: " + x + "-" + y);
-				Unit unidad = table[x][y].getUnitOnIt();
-				if (unidad != null) {
-					System.out.println("Unidad: " + unidad.getSummary());
-				}
+				// // TODO Debug
+				// System.out.println("Casilla: " + x + "-" + y);
+				// Unit unidad = table[x][y].getUnitOnIt();
+				// if (unidad != null) {
+				// System.out.println("Unidad: " + unidad.getSummary() + " referencia: " +
+				// unidad);
+				// }
 			}
 		}
-		table[4][1].overrideUnitOnIt(new BasicSoldier());
+		table[1][4].overrideUnitOnIt(new BasicSoldier());
 
 		Menu playerMenu = new Menu();
 		MenuLayer menuLayerMainChose = Menu.layerFactory(MenuLayerType.CHOICE,
@@ -100,11 +100,12 @@ public class Main {
 
 		Game game = new Game("GameLib Game", table,
 				new Pair<Turn, Turn>(
-						new PlayerTurn(new Action[] {}, new Unit[] { table[4][1].getUnitOnIt() }, playerMenu),
+						new PlayerTurn(new Action[] {}, new Unit[] { table[1][4].getUnitOnIt() }, playerMenu),
 						new EnemyTurn(new Action[] {}, tmpEnemy.toArray(new Unit[tmpEnemy.size()]), new Menu())),
 				GameType.SINGLEPLAYER);
+		// game.setDebug(false);
 		// TODO
-		game.startGame(new endChecker(), startMenu, true);
+		game.startGame(new endChecker(), startMenu, true, new GameUpdater());
 	}
 
 }

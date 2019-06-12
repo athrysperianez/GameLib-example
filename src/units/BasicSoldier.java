@@ -56,7 +56,9 @@ public class BasicSoldier extends PlayerUnit {
 		for (int x = 0; x < table.length - 1; x++) {
 			for (int y = 0; y < table[x].length - 1; y++) {
 				if (table[x][y].getUnitOnIt() != null && table[x][y].getUnitOnIt().equals(this)) {
-					result = new Pair<Integer, Integer>(x, y);
+					//TODO Debug
+					System.out.println("Found on " + x + "-" + y);
+					result = new Pair<Integer, Integer>(y, x);
 				}
 			}
 		}

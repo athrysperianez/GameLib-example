@@ -6,6 +6,6 @@
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="src/lib/GameLib.jar" sourcepath="/GameLib/src/gameLib/main/"/>
+	<classpathentry kind="lib" path="C:/Users/Elias/Documents/Eclipse/java-oxygen/eclipse/workspace/GameLib-example/lib/GameLib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

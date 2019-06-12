@@ -1,9 +1,5 @@
 package actions;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 /*
  *Creado por Elias Periañez
  *29 may. 2019
@@ -49,28 +45,28 @@ public class MoveAction implements Action {
 		int i = 1;
 		HashMap<Integer, Pair<Integer, Integer>> tmpHs = new HashMap<Integer, Pair<Integer, Integer>>();
 
-		Pair<Integer, Integer> tmp = new Pair<Integer, Integer>(ubication.getKey() + 1, ubication.getValue());
+		Pair<Integer, Integer> tmp = new Pair<Integer, Integer>(ubication.getKey(), ubication.getValue() - 1);
 		if (checkExist(tmp, table)) {
 			System.out.println(i + ".Up");
 			tmpHs.put(i, tmp);
 			i++;
 		}
 
-		tmp = new Pair<Integer, Integer>(ubication.getKey(), ubication.getValue() + 1);
+		tmp = new Pair<Integer, Integer>(ubication.getKey() + 1, ubication.getValue());
 		if (checkExist(tmp, table)) {
 			System.out.println(i + ".Right");
 			tmpHs.put(i, tmp);
 			i++;
 		}
 
-		tmp = new Pair<Integer, Integer>(ubication.getKey() - 1, ubication.getValue());
+		tmp = new Pair<Integer, Integer>(ubication.getKey(), ubication.getValue() + 1);
 		if (checkExist(tmp, table)) {
 			System.out.println(i + ".Down");
 			tmpHs.put(i, tmp);
 			i++;
 		}
 
-		tmp = (new Pair<Integer, Integer>(ubication.getKey(), ubication.getValue() + 1));
+		tmp = (new Pair<Integer, Integer>(ubication.getKey() - 1, ubication.getValue()));
 		if (checkExist(tmp, table)) {
 			System.out.println(i + ".Left");
 			tmpHs.put(i, tmp);
@@ -81,7 +77,6 @@ public class MoveAction implements Action {
 		int choose = -1;
 		do {
 			try {
-				sc.reset();
 				choose = sc.nextInt();
 				if (choose > 0 && choose < 5) {
 					check = true;
@@ -92,16 +87,14 @@ public class MoveAction implements Action {
 				System.out.println("No number or out of bounds number, try again");
 			}
 		} while (!check);
-		sc.close();
 		tmp = tmpHs.get(choose);
-		table[ubication.getKey()][ubication.getValue()].setUnitOnIt(null);
 
-		if (table[tmp.getKey()][tmp.getValue()].getUnitOnIt() == null) {
-			table[tmp.getKey()][tmp.getValue()].setUnitOnIt(owner);
+		if (table[tmp.getValue()][tmp.getKey()].getUnitOnIt() == null) {
+			table[ubication.getValue()][ubication.getKey()].overrideUnitOnIt(null);
+			table[tmp.getValue()][tmp.getKey()].setUnitOnIt(owner);
 		} else {
 			System.out.println("Couldn´t move, that section is already in use");
 		}
-
 		return table;
 	}
 

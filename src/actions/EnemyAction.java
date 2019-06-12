@@ -35,16 +35,18 @@ public class EnemyAction implements Action {
 	@Override
 	public Section[][] onCall(Section[][] table) {
 		Pair<Integer, Integer> ubication = this.owner.findUnit(table);
-		this.doAction(ubication.getKey() - 1, ubication.getValue(), table);
-		this.doAction(ubication.getKey() + 1, ubication.getValue(), table);
-		this.doAction(ubication.getKey(), ubication.getValue() - 1, table);
-		this.doAction(ubication.getKey(), ubication.getValue() + 1, table);
+		if (ubication != null) {
+			this.doAction(ubication.getKey() - 1, ubication.getValue(), table);
+			this.doAction(ubication.getKey() + 1, ubication.getValue(), table);
+			this.doAction(ubication.getKey(), ubication.getValue() - 1, table);
+			this.doAction(ubication.getKey(), ubication.getValue() + 1, table);
+		}
 		return table;
 	}
 
 	private void doAction(int first, int second, Section[][] table) {
 		try {
-			table[first][second].setUnitOnIt(null);
+			table[first][second].overrideUnitOnIt(null);
 		} catch (IndexOutOfBoundsException e) {
 			// Do nothing
 		}

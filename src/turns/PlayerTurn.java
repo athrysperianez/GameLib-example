@@ -39,7 +39,7 @@ public class PlayerTurn extends Turn {
 				if (actionInfo.getValue() == null) {
 					System.out.println(i + "." + actionInfo.getKey() + "\n");
 				} else {
-					System.out.println(i + "." + actionInfo.getKey() + "\n    " + actionInfo.getValue() + "\n");
+					System.out.println(i + "." + actionInfo.getKey() + "\n" + actionInfo.getValue() + "\n");
 				}
 				selector.put(i, current);
 				i++;
@@ -52,7 +52,7 @@ public class PlayerTurn extends Turn {
 					if (actionInfo.getValue() == null) {
 						System.out.println(i + "." + actionInfo.getKey() + "\n");
 					} else {
-						System.out.println(i + "." + actionInfo.getKey() + "\n    " + actionInfo.getValue() + "\n");
+						System.out.println(i + "." + actionInfo.getKey() + "\n" + actionInfo.getValue() + "\n");
 					}
 					selector.put(i, current);
 					i++;

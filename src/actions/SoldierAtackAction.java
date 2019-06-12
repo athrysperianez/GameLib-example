@@ -45,7 +45,7 @@ public class SoldierAtackAction implements Action {
 
 	private void doAction(int first, int second, Section[][] table) {
 		try {
-			table[first][second].setUnitOnIt(null);
+			table[first][second].overrideUnitOnIt(null);
 		} catch (IndexOutOfBoundsException e) {
 			// Do nothing
 		}

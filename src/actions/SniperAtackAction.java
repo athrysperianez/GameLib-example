@@ -27,7 +27,7 @@ public class SniperAtackAction implements Action {
 		try {
 			if (!PlayerUnit.class
 					.isAssignableFrom(table[ubication.getKey() + 3][ubication.getValue()].getUnitOnIt().getClass())) {
-				table[ubication.getKey() + 3][ubication.getValue()].setUnitOnIt(null);
+				table[ubication.getKey() + 3][ubication.getValue()].overrideUnitOnIt(null);
 			}
 		} catch (NullPointerException e) {
 			// Do nothing
