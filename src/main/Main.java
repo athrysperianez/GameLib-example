@@ -66,13 +66,15 @@ public class Main {
 		int enemyMax = rand.nextInt(100);
 		enemyMax++;
 		// TODO Debug
-		// System.out.println(enemyMax);
+		/**
+		 * enemyMax = Integer.MAX_VALUE; System.out.println(enemyMax);
+		 **/
 		boolean lastWasEnemy = false;
 		ArrayList<Unit> tmpEnemy = new ArrayList<Unit>();
 		for (int x = table.length - 1; x > -1; x--) {
 			for (int y = table.length - 1; y > -1; y--) {
 				table[x][y] = new BasicSection();
-				if (!lastWasEnemy && rand.nextBoolean() && enemyCount < enemyMax && (x != 1 || y != 4)) {
+				if (!lastWasEnemy && rand.nextBoolean() && enemyCount <= enemyMax && validEnemyPoint(x, y)) {
 					table[x][y].setUnitOnIt(new BasicEnemy());
 					tmpEnemy.add(table[x][y].getUnitOnIt());
 					enemyCount++;
@@ -100,12 +102,17 @@ public class Main {
 
 		Game game = new Game("GameLib Game", table,
 				new Pair<Turn, Turn>(
-						new PlayerTurn(new Action[] {}, new Unit[] { table[1][4].getUnitOnIt() }, playerMenu),
+						new PlayerTurn(new Action[] { new CreateSoldierAction(), new CreateSniperAction() },
+								new Unit[] { table[1][4].getUnitOnIt() }, playerMenu),
 						new EnemyTurn(new Action[] {}, tmpEnemy.toArray(new Unit[tmpEnemy.size()]), new Menu())),
 				GameType.SINGLEPLAYER);
-		// game.setDebug(false);
+		game.setDebug(false);
 		// TODO
 		game.startGame(new endChecker(), startMenu, true, new GameUpdater());
+	}
+
+	private static boolean validEnemyPoint(int x, int y) {
+		return x != 0 && (x != 2 || y != 4) && (x != 1 || y != 3) && (x != 1 || y != 5) && (x != 1 || y != 4);
 	}
 
 }

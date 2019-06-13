@@ -2,7 +2,9 @@ package actions;
 
 import gameLib.main.Action;
 import gameLib.main.Section;
+import gameLib.main.Updater;
 import javafx.util.Pair;
+import main.GameUpdater;
 import units.BasicSoldier;
 
 public class CreateSoldierAction implements Action {
@@ -17,7 +19,9 @@ public class CreateSoldierAction implements Action {
 
 	@Override
 	public Section[][] onCall(Section[][] table) {
-		table[0][4].setUnitOnIt(new BasicSoldier());
+		BasicSoldier addSoldier = new BasicSoldier();
+		table[0][4].setUnitOnIt(addSoldier);
+		GameUpdater.localUpdateList.add(addSoldier);
 		return table;
 	}
 

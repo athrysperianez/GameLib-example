@@ -24,7 +24,7 @@ ________________________________________________________________________________
 
 public class GameUpdater implements Updater {
 
-	List<Unit> localUpdateList = new LinkedList<>();
+	public static List<Unit> localUpdateList = new LinkedList<>();
 
 	public void addUnitToUpdate(Unit unit) {
 		localUpdateList.add(unit);

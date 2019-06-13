@@ -18,7 +18,7 @@ public class SniperAtackAction implements Action {
 	@Override
 	public Pair<String, String> getActionInfo() {
 		return new Pair<String, String>("Atack with your Sniper number " + owner.getUnitNumber(),
-				"Your sniper will attack the fourth square upwards counting from his position");
+				"Your sniper will attack the fourth square downwards counting from it position");
 	}
 
 	@Override

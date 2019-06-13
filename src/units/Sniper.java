@@ -54,10 +54,14 @@ public class Sniper extends PlayerUnit {
 	@Override
 	public Pair<Integer, Integer> findUnit(Section[][] table) {
 		Pair<Integer, Integer> result = null;
-		for (int x = 0; x < table[0].length; x++) {
-			for (int y = 0; x < table[x].length; y++) {
-				if (table[x][y].getUnitOnIt().equals(this)) {
-					result = new Pair<Integer, Integer>(x, y);
+		for (int x = 0; x < table.length; x++) {
+			for (int y = 0; y < table[x].length; y++) {
+				try {
+					if (table[x][y].getUnitOnIt().equals(this)) {
+						result = new Pair<Integer, Integer>(x, y);
+					}
+				} catch (NullPointerException e) {
+					// Do nothing
 				}
 			}
 		}

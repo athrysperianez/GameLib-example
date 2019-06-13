@@ -30,16 +30,16 @@ public class SoldierAtackAction implements Action {
 	@Override
 	public Pair<String, String> getActionInfo() {
 		return new Pair<String, String>("Atack with your Soldier number " + owner.getUnitNumber(),
-				"Your Soldier will atack the 4 adjacents sections");
+				"Your Soldier will atack on a distance of 2 sections in the 4 directions");
 	}
 
 	@Override
 	public Section[][] onCall(Section[][] table) {
 		Pair<Integer, Integer> ubication = this.owner.findUnit(table);
-		this.doAction(ubication.getKey() - 1, ubication.getValue(), table);
-		this.doAction(ubication.getKey() + 1, ubication.getValue(), table);
-		this.doAction(ubication.getKey(), ubication.getValue() - 1, table);
-		this.doAction(ubication.getKey(), ubication.getValue() + 1, table);
+		this.doAction(ubication.getValue() - 2, ubication.getKey(), table);
+		this.doAction(ubication.getValue() + 2, ubication.getKey(), table);
+		this.doAction(ubication.getValue(), ubication.getKey() - 2, table);
+		this.doAction(ubication.getValue(), ubication.getKey() + 2, table);
 		return table;
 	}
 
